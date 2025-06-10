@@ -5,8 +5,10 @@ import { useUserStore } from "../stores/useUserStore";
 
 export const HomePage: React.FC = () => {
   const navigate = useNavigate();
-  const username = useUserStore((state) => state.username);
-  const reset = useUserStore((state) => state.reset);
+  const username = useUserStore(
+    (state: { username: string }) => state.username
+  );
+  const reset = useUserStore((state: { reset: () => void }) => state.reset);
 
   const handleLogout = () => {
     reset();

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { TextField, Button, Box, Container, Typography } from "@mui/material";
 import { useUserStore } from "../stores/useUserStore";
@@ -6,13 +6,19 @@ import { useUserStore } from "../stores/useUserStore";
 export const LoginPage: React.FC = () => {
   const [inputUsername, setInputUsername] = useState("");
   const navigate = useNavigate();
-  const setUsername = useUserStore((state) => state.setUsername);
+  const setUsername = useUserStore(
+    (state: { setUsername: (name: string) => void }) => state.setUsername
+  );
 
   const handleLogin = () => {
     if (inputUsername.trim()) {
       setUsername(inputUsername);
       navigate("/home");
     }
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setInputUsername(e.target.value);
   };
 
   return (
@@ -33,7 +39,7 @@ export const LoginPage: React.FC = () => {
           fullWidth
           label="ユーザー名"
           value={inputUsername}
-          onChange={(e) => setInputUsername(e.target.value)}
+          onChange={handleChange}
         />
         <Button
           fullWidth
