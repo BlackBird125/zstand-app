@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
 type UserState = {
   username: string;
@@ -7,7 +7,7 @@ type UserState = {
 };
 
 export const useUserStore = create<UserState>((set) => ({
-  username: '',
+  username: "",
   setUsername: (name: string) => set({ username: name }),
-  reset: () => set({ username: '' }),
-})); 
+  reset: () => set({ username: "" }),
+}));
