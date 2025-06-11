@@ -6,9 +6,7 @@ import { useUserStore } from "../stores/useUserStore";
 export const LoginPage: React.FC = () => {
   const [inputUsername, setInputUsername] = useState("");
   const navigate = useNavigate();
-  const setUsername = useUserStore(
-    (state: { setUsername: (name: string) => void }) => state.setUsername
-  );
+  const setUsername = useUserStore((state) => state.setUsername);
 
   const handleLogin = () => {
     if (inputUsername.trim()) {
